@@ -1,7 +1,7 @@
 import zlCalendar from './zl-calendar'
 const comment = {
   install:function(Vue){
-    Vue.component('zl-calendar', zlCalendar)
+    Vue.component('zlCalendar', zlCalendar)
   }
 }
 // global 的状态下自动安装

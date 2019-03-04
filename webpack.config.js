@@ -7,7 +7,11 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    // filename: 'build.js',
+    filename: 'zl-calendar.js',
+    library: 'zl-calendar',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   module: {
     rules: [

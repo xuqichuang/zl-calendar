@@ -2,6 +2,12 @@
 
 > 臻旅日历组件
 
+## 引入组件
+
+```
+npm install zl-calendar -S
+```
+
 ## 全局引用方法
 > main.js 中引入
 
