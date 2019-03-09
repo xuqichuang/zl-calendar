@@ -2,7 +2,7 @@
  * @Author: 徐其闯 
  * @Date: 2019-02-01 18:04:39 
  * @Last Modified by: 徐其闯
- * @Last Modified time: 2019-03-04 11:36:12
+ * @Last Modified time: 2019-03-09 13:10:25
  */
 
 <template>
@@ -50,8 +50,8 @@
                     {{list.holiday}}
                   </p>
                   <p>{{list.yesterToTomorrow || list.festival || list.day}}</p>
-                  <p class="selected-day" v-show="type == 'double' && selectedDay[0] && list.exactDate == selectedDay[0].exactDate">{{selectedText[0]}}</p>
-                  <p class="selected-day" v-show="type == 'double' && selectedDay[1] && list.exactDate == selectedDay[1].exactDate">{{selectedText[1]}}</p>
+                  <p class="selected-day" v-show="selectedDay[0] && list.exactDate == selectedDay[0].exactDate">{{selectedText[0]}}</p>
+                  <p class="selected-day" v-show="selectedDay[1] && list.exactDate == selectedDay[1].exactDate">{{selectedText[1]}}</p>
                 </div>
               </div>
             </div>
@@ -261,16 +261,15 @@ export default {
       this.status = false
     },
     init(){
-      if(this.type == 'double'){
-        this.selectedDate.forEach(item =>{
-          this.selectedDay.push({
-            day:moment(new Date(item)).format('D'),
-            exactDate:item,
-            timeStamp:moment(new Date(item)).unix(),
-            week:moment(new Date(item)).format('d')
-          })
+      console.log(this.selectedDate)
+      this.selectedDate.forEach(item =>{
+        this.selectedDay.push({
+          day:moment(new Date(item)).format('D'),
+          exactDate:item,
+          timeStamp:moment(new Date(item)).unix(),
+          week:moment(new Date(item)).format('d')
         })
-      }
+      })
     },
     daySelected(list){
       if(list.timeStamp < this.todayStamp){
@@ -299,6 +298,8 @@ export default {
             // 数组等于二就替换当前数组
             this.selectedDay.splice(0,2,list)
           }
+        }else{
+          this.selectedDay.splice(0,1,list)
         }
         // console.log(this.selectedDay)
         this.$emit('change', this.selectedDay)
@@ -390,7 +391,7 @@ export default {
     position: absolute;
     background: #fff;
     overflow: hidden;
-    height: 80vh;
+    height: 60vh;
     border-radius:12px 12px 0 0;
     .top{
       position: absolute;
@@ -500,6 +501,7 @@ export default {
               }
               &.one-day{
                 border-radius: 2px;
+                color:#fff;
               }
               .selected-day,.holiday-day{
                 font-size: 10px;

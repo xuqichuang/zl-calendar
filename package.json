@@ -1,7 +1,7 @@
 {
   "name": "zl-calendar",
   "description": "臻旅日历组件",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "(徐其闯 <xqc1319681561@163.com>)",
   "main": "dist/zl-calendar.js",
   "license": "MIT",
